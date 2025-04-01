@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { Checkbox } from "../Checkbox";
 import { Link } from "react-router";
 import { Controller, useForm } from "react-hook-form";
-import { Input } from "../Input";
-import { Button } from "../Button";
-import { Title } from "../Title";
+import { Title, Button, Input, Checkbox } from "../ui-kit";
 
 type ContactFormProps = {
   title: string;

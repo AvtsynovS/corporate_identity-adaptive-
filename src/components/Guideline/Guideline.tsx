@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Title } from "../Title";
+import { Title } from "../ui-kit";
 import guideline from "../../assets/images/guideline.png";
 
 const StyledWrapper = styled.div`

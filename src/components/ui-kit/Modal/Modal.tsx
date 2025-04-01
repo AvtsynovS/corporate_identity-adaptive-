@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Portal, createContainer } from "../Portal";
 import styled from "styled-components";
-import { Close } from "../../assets";
-import { ContactForm } from "../ContactForm";
+import { Close } from "../../../assets";
 
 type ModalProps = {
-  title: string;
-  onClose?: () => void;
+  children: React.ReactNode;
+  onClose: () => void;
 };
 
 const StyledWrapper = styled.div`
@@ -51,7 +50,7 @@ const StyledCloseButton = styled.button`
 
 const MODAL_CONTAINER_ID = "modal-container-id";
 
-export const Modal = ({ title, onClose }: ModalProps) => {
+export const Modal = ({ children, onClose }: ModalProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const [isMounted, setMounted] = useState(false);
 
@@ -99,10 +98,7 @@ export const Modal = ({ title, onClose }: ModalProps) => {
           >
             <Close />
           </StyledCloseButton>
-          <ContactForm
-            title={title}
-            vertical
-          />
+          {children}
         </StyledModal>
       </StyledWrapper>
     </Portal>

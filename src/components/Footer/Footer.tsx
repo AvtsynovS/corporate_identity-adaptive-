@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ContactForm } from "../ContactForm";
-import { Title } from "../Title";
+import { Title } from "../ui-kit";
 
 const StyledFooter = styled.footer`
   display: flex;

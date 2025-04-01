@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import milk from "../../assets/images/milk_bg.png";
-import { Button } from "../Button";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Modal } from "../Modal";
-import { Title } from "../Title";
+import { ContactForm } from "../ContactForm";
+import { Modal, Title, Button } from "../ui-kit";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -81,10 +80,12 @@ export const MainScreen = () => {
         </StyledArticle>
       </StyledWrapper>
       {isModalActive && (
-        <Modal
-          title="Оставить заявку"
-          onClose={handleModalClose}
-        />
+        <Modal onClose={handleModalClose}>
+          <ContactForm
+            title="Оставить заявку"
+            vertical
+          />
+        </Modal>
       )}
     </StyledContainer>
   );

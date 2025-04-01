@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Title } from "../Title";
+import { Title } from "../ui-kit";
 import vilata from "../../assets/images/vilata.png";
 import aq_lifecare from "../../assets/images/aq_lifecare.png";
 import { ElementCorporateIdentity, elements } from "./Element";
