@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../Button";
-import { Title } from "../Title";
+import { Title, Button } from "../ui-kit";
 import { projects } from "./constants";
 import { useEffect, useRef, useState } from "react";
 import { ProjectType } from "./types";
