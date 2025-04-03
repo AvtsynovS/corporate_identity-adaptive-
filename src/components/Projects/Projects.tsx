@@ -4,28 +4,45 @@ import { projects } from "./constants";
 import { useEffect, useRef, useState } from "react";
 import { ProjectType } from "./types";
 import { useNavigate } from "react-router";
+import { device } from "../../constants";
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 70px;
+  gap: 70px;
 
-  & > div {
-    width: 100%;
+  @media ${device.mobile} {
+    margin-top: 40px;
   }
 `;
 
 const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 3em 0;
+  display: grid;
+  align-items: center;
+  gap: 15px;
+  grid-template-areas:
+    "description description description description button"
+    "picture picture picture picture picture";
+  margin-top: 40px;
 
-  & div > img {
-    width: 100%;
-    border-radius: 0.5em;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-      rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  @media ${device.mobile} {
+    gap: 5px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "description"
+      "picture"
+      "button";
+  }
+
+  @media ${device.tablet} {
+    gap: 5px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "description"
+      "picture"
+      "button";
   }
 `;
 
@@ -34,6 +51,7 @@ const StyledTitle = styled(Title)`
 `;
 
 const StyledDescription = styled.div`
+  grid-area: description;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -45,12 +63,36 @@ const StyledDescription = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledShowButton = styled(Button)`
   min-width: 160px;
+`;
+
+const StyledButton = styled(Button)`
+  grid-area: button;
+
+  @media ${device.mobile} {
+    margin-top: 20px;
+  }
+
+  @media ${device.tablet} {
+    margin-top: 20px;
+  }
+`;
+
+const StyledPicture = styled.div`
+  grid-area: picture;
+
+  & img {
+    width: 100%;
+    border-radius: 0.5em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
 `;
 
 const StyleList = styled.div<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  margin-bottom: 40px;
 `;
 
 export const Projects = () => {
@@ -86,19 +128,19 @@ export const Projects = () => {
               />
               <p>{projects[0].description}</p>
             </div>
-            <Button
-              view="ghost"
-              withPadding
-              label="Смотреть проект"
-              onClick={() => onOpenProject(projects[0].id)}
-            />
           </StyledDescription>
-          <div>
+          <StyledButton
+            view="ghost"
+            withPadding
+            label="Смотреть проект"
+            onClick={() => onOpenProject(projects[0].id)}
+          />
+          <StyledPicture>
             <img
               src={projects[0].img}
               alt={projects[0].img}
             />
-          </div>
+          </StyledPicture>
         </StyledWrapper>
         <StyleList isOpen={isOpen}>
           <div ref={itemRef}>
@@ -114,26 +156,26 @@ export const Projects = () => {
                         />
                         <p>{description}</p>
                       </div>
-                      <Button
-                        view="ghost"
-                        withPadding
-                        label="Смотреть проект"
-                        onClick={() => onOpenProject(id)}
-                      />
                     </StyledDescription>
-                    <div>
+                    <StyledButton
+                      view="ghost"
+                      withPadding
+                      label="Смотреть проект"
+                      onClick={() => onOpenProject(id)}
+                    />
+                    <StyledPicture>
                       <img
                         src={img}
                         alt={img}
                       />
-                    </div>
+                    </StyledPicture>
                   </StyledWrapper>
                 );
               })}
           </div>
         </StyleList>
       </div>
-      <StyledButton
+      <StyledShowButton
         view="primary"
         label={isOpen ? "Свернуть" : "Развернуть"}
         onClick={() => setIsOpen(!isOpen)}

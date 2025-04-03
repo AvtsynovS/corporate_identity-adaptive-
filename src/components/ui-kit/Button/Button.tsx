@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../../constants";
 
 type ButtonType = "button" | "submit" | "reset";
 type ViewType = "primary" | "secondary" | "ghost" | "icon" | "link";
@@ -18,12 +19,13 @@ const StyledButton = styled.button<{
   withPadding?: boolean;
 }>`
   cursor: pointer;
+  font-size: 0.9em;
   padding: ${({ view }) => {
     switch (view) {
       case "primary":
       case "secondary":
       case "ghost":
-        return "1em 2em";
+        return "1em";
       case "icon":
       case "link":
       default:
@@ -64,6 +66,14 @@ const StyledButton = styled.button<{
       : "none"};
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+  @media ${device.tablet} {
+    font-size: 0.7em;
+  }
+
+  @media ${device.mobile} {
+    font-size: 0.7em;
+  }
 `;
 
 export const Button = ({

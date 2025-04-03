@@ -12,4 +12,16 @@ export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+
+  @media (width < 768px) {
+    font-size: 14px;
+  }
+
+  @media (768px <= width < 1024px) {
+    font-size: 18px;
+  }
+
+  @media (width >= 1024px) {
+    font-size: 22px;
+  }
 }`;

@@ -10,6 +10,7 @@ type InputProps = {
 const StyledInput = styled.input`
   padding: 20px 30px;
   border-radius: 10px;
+  border: 1px solid #7f7d7d;
 `;
 
 export const Input = ({

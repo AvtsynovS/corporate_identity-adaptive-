@@ -7,7 +7,7 @@ const StyledLayout = styled.div`
   row-gap: 70px;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 0 5% 70px;
+  padding: 0 5% 10%;
 `;
 
 const StyledSecondaryLayout = styled.div`

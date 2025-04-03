@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../../constants";
 
 type H2Props = {
   type: "h1" | "h2" | "h3";
@@ -7,15 +8,34 @@ type H2Props = {
 };
 
 const StyledH1 = styled.h1`
-  font-weight: 400;
   font-size: 55px;
+
+  @media ${device.mobile} {
+    font-size: 25px;
+  }
+
+  @media ${device.tablet} {
+    font-size: 35px;
+  }
+
+  @media ${device.laptop} {
+    font-size: 45px;
+  }
 `;
 
 const StyledH2 = styled.h2`
   font-weight: 400;
-  font-size: 30px;
+  font-size: 38px;
   margin: 0.4em 0;
   line-height: 110%;
+
+  @media ${device.mobile} {
+    font-size: 22px;
+  }
+
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
 `;
 
 const StyledH3 = styled.h3`
