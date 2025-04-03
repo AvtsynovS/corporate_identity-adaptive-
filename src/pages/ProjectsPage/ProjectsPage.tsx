@@ -5,13 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import { ProjectType } from "./types";
 import { useNavigate } from "react-router";
 import { Button, Title } from "../../components";
+import { device } from "../../constants";
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 0 5% 70px;
+  padding: 10% 5%;
 `;
 
 const StyledWrapper = styled.div`
@@ -40,6 +41,14 @@ const StyledDescription = styled.div`
 
   & div > p {
     margin: 0;
+  }
+
+  @media ${device.mobile} {
+    gap: 20px;
+
+    & div {
+      max-width: 60%;
+    }
   }
 `;
 

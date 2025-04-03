@@ -3,12 +3,21 @@ import { Title } from "../ui-kit";
 import vilata from "../../assets/images/vilata.png";
 import aq_lifecare from "../../assets/images/aq_lifecare.png";
 import { ElementCorporateIdentity, elements } from "./Element";
+import { device } from "../../constants";
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
-  margin: 100px 0;
+  margin-top: 70px;
+
+  & div > p {
+    text-align: justify;
+  }
+
+  @media ${device.mobile} {
+    margin-top: 40px;
+  }
 `;
 
 const StyledContainer = styled.div`
@@ -24,22 +33,52 @@ const StyledContainer = styled.div`
     text-align: justify;
     margin-top: 0;
   }
+
+  @media ${device.mobile} {
+    flex-direction: column;
+
+    & img {
+      max-width: 100%;
+    }
+  }
 `;
 
 const StyledElementsWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
+
+  @media ${device.mobile} {
+    flex-direction: column;
+  }
 `;
 
 const StyledPriceArticle = styled.div`
   display: grid;
   gap: 0 3em;
-  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
-    ". . title title"
+    "title title title title"
     "main main picture picture"
     "main main picture picture";
+
+  @media ${device.mobile} {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "picture"
+      "main";
+  }
+
+  @media ${device.tablet} {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "picture"
+      "main";
+  }
 `;
 
 const StyledTitle = styled(Title)`
@@ -47,6 +86,7 @@ const StyledTitle = styled(Title)`
   align-self: end;
   margin-bottom: 0.3em;
 `;
+
 const StyledContent = styled.div`
   grid-area: main;
 
@@ -54,12 +94,12 @@ const StyledContent = styled.div`
     margin-bottom: 30px;
   }
 `;
+
 const StyledPicture = styled.div`
   grid-area: picture;
 
   & img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
     border-radius: 0.3em;
   }

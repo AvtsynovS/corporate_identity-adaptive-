@@ -4,36 +4,60 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { ContactForm } from "../ContactForm";
 import { Modal, Title, Button } from "../ui-kit";
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  background: url(${milk}) no-repeat center center/cover;
-`;
+import { device } from "../../constants";
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  width: 90%;
-  max-width: 1200px;
-  padding: 0 5%;
+  justify-content: center;
 `;
 
-const StyledArticle = styled.div`
-  margin: 270px 0 340px;
-  max-width: 560px;
+const StyledImgBox = styled.div`
+  display: flex;
 
-  & h1 {
-    margin: 0;
+  & img {
+    width: 100%;
+    height: 100vh;
   }
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   gap: 20px;
-  margin-top: 65px;
+  margin-top: 10%;
+
+  @media ${device.mobile} {
+    gap: 10px;
+
+    & button {
+      padding: 0.8em;
+    }
+  }
+`;
+
+const StyledArticle = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  max-width: 40%;
+  padding: 0 5%;
+
+  @media ${device.mobile} {
+    max-width: 50%;
+    top: 25%;
+
+    & h2 {
+      font-size: 14px;
+    }
+  }
+
+  & h1 {
+    margin-bottom: 0;
+
+    @media ${device.mobile} {
+      font-size: 18px;
+    }
+  }
 `;
 
 export const MainScreen = () => {
@@ -47,38 +71,41 @@ export const MainScreen = () => {
   const handleModalOpen = () => {
     setModalActive(true);
   };
+
   const handleModalClose = () => {
     setModalActive(false);
   };
 
   return (
-    <StyledContainer>
-      <StyledWrapper>
-        <StyledArticle>
-          <div>
-            <Title
-              type="h1"
-              text="Вам нужен фирменный стиль или ребрендинг?"
-            />
-            <Title
-              type="h2"
-              text="Разработаем в срок от 10-ти дней"
-            />
-          </div>
-          <ButtonWrapper>
-            <Button
-              view="secondary"
-              label="Портфолио"
-              onClick={onPortfolio}
-            />
-            <Button
-              view="secondary"
-              label="Оставить заявку"
-              onClick={handleModalOpen}
-            />
-          </ButtonWrapper>
-        </StyledArticle>
-      </StyledWrapper>
+    <StyledWrapper>
+      <StyledArticle>
+        <Title
+          type="h1"
+          text="Вам нужен фирменный стиль или ребрендинг?"
+        />
+        <Title
+          type="h2"
+          text="Разработаем в срок от 10-ти дней"
+        />
+        <ButtonWrapper>
+          <Button
+            view="secondary"
+            label="Портфолио"
+            onClick={onPortfolio}
+          />
+          <Button
+            view="secondary"
+            label="Оставить заявку"
+            onClick={handleModalOpen}
+          />
+        </ButtonWrapper>
+      </StyledArticle>
+      <StyledImgBox>
+        <img
+          src={milk}
+          alt="milk"
+        />
+      </StyledImgBox>
       {isModalActive && (
         <Modal onClose={handleModalClose}>
           <ContactForm
@@ -87,6 +114,6 @@ export const MainScreen = () => {
           />
         </Modal>
       )}
-    </StyledContainer>
+    </StyledWrapper>
   );
 };

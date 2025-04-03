@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Portal, createContainer } from "../Portal";
 import styled from "styled-components";
 import { Close } from "../../../assets";
+import { device } from "../../../constants";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -29,6 +30,11 @@ const StyledModal = styled.div`
   border-radius: 10px;
   padding: 30px 40px;
   width: 40%;
+
+  @media ${device.mobile} {
+    width: 60%;
+    padding: 1em 2em;
+  }
 `;
 
 const StyledCloseButton = styled.button`
@@ -45,6 +51,11 @@ const StyledCloseButton = styled.button`
 
   & :hover {
     color: rgb(0, 0, 0, 0.1);
+  }
+
+  @media ${device.mobile} {
+    width: 30px;
+    height: 35px;
   }
 `;
 

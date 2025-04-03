@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router";
 import { Controller, useForm } from "react-hook-form";
 import { Title, Button, Input, Checkbox } from "../ui-kit";
+import { device } from "../../constants";
 
 type ContactFormProps = {
   title: string;
@@ -29,24 +30,60 @@ const StyledForm = styled.form<{ vertical: boolean }>`
         "button button"`
       : `"fullName fullName phone phone button"
         "fullName fullName phone phone button"
-        "policy policy . . ."`};
+        "policy policy policy policy ."`};
+
+  @media ${device.mobile} {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 10px;
+    grid-template-areas:
+      "fullName fullName"
+      "phone phone"
+      "policy policy"
+      "button button";
+  }
+  @media ${device.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "fullName fullName"
+      "phone phone"
+      "policy policy"
+      "button button";
+  }
 `;
 
 const StyledFullNameField = styled(Input)`
   grid-area: fullName;
+
+  @media ${device.mobile} {
+    padding: 1em;
+  }
 `;
 
 const StyledPhoneField = styled(Input)`
   grid-area: phone;
+
+  @media ${device.mobile} {
+    padding: 1em;
+  }
 `;
 
 const StyledPolicyField = styled(Checkbox)`
   grid-area: policy;
   margin: 10px 0 30px 0;
+
+  @media ${device.mobile} {
+    font-size: 0.7em;
+    margin: 0;
+  }
 `;
 
 const StyledButton = styled(Button)`
   grid-area: button;
+
+  @media ${device.laptop} {
+    font-size: 0.7em;
+    height: 100%;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -56,15 +93,23 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const StyledLabel = styled.div`
-  font-size: 16px;
+const StyledSubtitle = styled(Title)`
+  margin-top: 0;
 `;
 
 const StyledWrapper = styled.div<{ vertical: boolean }>`
   display: flex;
   flex-direction: column;
   padding: ${({ vertical }) => (vertical ? 0 : "70px 0")};
+
+  @media ${device.mobile} {
+    & h2 {
+      margin-top: 0;
+      margin-bottom: 0%.5em;
+    }
+  }
 `;
+
 export const ContactForm = ({
   title,
   subTitle,
@@ -90,7 +135,7 @@ export const ContactForm = ({
         text={title}
       />
       {subTitle && (
-        <Title
+        <StyledSubtitle
           type="h3"
           text={subTitle}
         />
@@ -128,12 +173,12 @@ export const ContactForm = ({
           render={({ field: { onChange, value } }) => (
             <StyledPolicyField
               label={
-                <StyledLabel>
+                <label>
                   Я принимаю{" "}
                   <StyledLink to="privacy-policy">
                     условия передачи персональных данных
                   </StyledLink>
-                </StyledLabel>
+                </label>
               }
               checked={value}
               onChange={onChange}

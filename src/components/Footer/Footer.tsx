@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ContactForm } from "../ContactForm";
 import { Title } from "../ui-kit";
+import { device } from "../../constants";
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -15,6 +16,12 @@ const StyledFooter = styled.footer`
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
+
+  @media ${device.mobile} {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
   }
 `;
 
